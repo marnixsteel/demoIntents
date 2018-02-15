@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
         btnDetails = findViewById(R.id.btn_details);
         spNamelist = findViewById(R.id.sp_namelist);
 
-        String[] names = {"Jan", "Piet", "Genghis", "Atilla", "Dirk", "Swa", "Evarist"};
+        String[] names = {"Jan", "Piet", "Genghis", "Atilla", "Dirk", "Swa", "Evarist", "Freddy", "Drarrie", "Zebi", "El Kazam", "Pol", "Nico"};
 
         //adapter -> klasse die elementen uit de lijst in de layout stopt per rij voor bv. spanner, listview
         //arrayadapter kan maar 1 lijn tekst weergeven per rij
         ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, names);
         //adapter toevoegen aan spinner
         spNamelist.setAdapter(mArrayAdapter);
+        //welk element als defaultwaarde?
+        spNamelist.setSelection(3);
 
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                String selectedName = (String) spNamelist.getSelectedItem();
+
                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                intent.putExtra("name", selectedName);
                 startActivity(intent);
             }
         });
