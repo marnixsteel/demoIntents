@@ -6,11 +6,14 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnCall, btnHomepage, btnMap, btnDetails;
+    private Spinner spNamelist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
         btnHomepage = findViewById(R.id.btn_homepage);
         btnMap = findViewById(R.id.btn_map);
         btnDetails = findViewById(R.id.btn_details);
+        spNamelist = findViewById(R.id.sp_namelist);
+
+        String[] names = {"Jan", "Piet", "Genghis", "Atilla", "Dirk", "Swa", "Evarist"};
+
+        //adapter -> klasse die elementen uit de lijst in de layout stopt per rij voor bv. spanner, listview
+        //arrayadapter kan maar 1 lijn tekst weergeven per rij
+        ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, names);
+        //adapter toevoegen aan spinner
+        spNamelist.setAdapter(mArrayAdapter);
 
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
